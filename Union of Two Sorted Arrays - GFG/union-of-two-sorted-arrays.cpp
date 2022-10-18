@@ -11,6 +11,7 @@ class Solution{
     //Function to return a list containing the union of the two arrays. 
     vector<int> findUnion(int arr1[], int arr2[], int n, int m)
     {
+        //used set here and later we converted the set to vector , just to avoid duplicates . 
         set<int> ans;
         int i=0,j=0;
         while(i<n && j<m){
