@@ -16,7 +16,7 @@ public:
         int t= digits[n-1]+1;
         carry=t/10;
         digits[n-1]=t%10;
-        if(carry==1){
+        if(carry){
             for(int i=n-2;i>=0;i--){
                 t=digits[i]+carry;
                 carry=t/10;
