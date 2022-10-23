@@ -19,11 +19,10 @@ public:
             curr_sum+=nums[i];
             if(curr_sum==k)
                 res++;
-            // if(curr_sum>k){
-                if(prev_sum.find(curr_sum-k)!=prev_sum.end()){
-                    res+=prev_sum[curr_sum-k];
-                }
-            // } 
+            // When the curr_sum exceeds the given K, we remove the prev sub array acc.
+            if(prev_sum.find(curr_sum-k)!=prev_sum.end()){
+                res+=prev_sum[curr_sum-k];
+            }
             prev_sum[curr_sum]++;
         }
         return res;
