@@ -40,7 +40,6 @@ public:
 //             }
 //             else nums[i]=2;
 //         }
-        
 //         O(N) Best Method
         int l=0,h=nums.size()-1,mid=0;
         while(mid<=h){
