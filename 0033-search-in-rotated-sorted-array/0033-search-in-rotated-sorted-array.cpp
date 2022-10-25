@@ -48,12 +48,28 @@ public:
         // }
         // return -1;
         // Method 2 -. finding the pivot using BS and than searhing in both part using BS
-        int n=nums.size();
-        int l=0,h=n-1;
-        int k = findP(l,h,nums);
-        int one=solve(nums,l,k,target);
-        int two=solve(nums,k+1,h,target);
+//         int n=nums.size();
+//         int l=0,h=n-1;
+//         int k = findP(l,h,nums);
+//         int one=solve(nums,l,k,target);
+//         int two=solve(nums,k+1,h,target);
         
-        return one==-1?two:one;
+//         return one==-1?two:one;
+        // 3rd Method --> O(log n)
+        int l=0,h=nums.size()-1,m;
+        while(l<=h){
+            m=l+(h-l)/2;
+            if(nums[m]==target) return m;
+            // left is sorted
+            if(nums[l]<=nums[m]){
+                if(target >= nums[l] && target <= nums[m])h=m-1;
+                else l=m+1;
+            }
+            else if(nums[m]<=nums[h]){
+                if(target >= nums[m] && target <= nums[h]) l=m+1;
+                else h=m-1;
+            }
+        }
+        return -1;  
     }
 };
