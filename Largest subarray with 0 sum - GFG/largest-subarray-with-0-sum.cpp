@@ -12,12 +12,11 @@ class Solution{
     public:
     int maxLen(vector<int>&A, int n)
     {   unordered_map<int,int> mp;
-        int s=0,len=0,mlen=0;
+        int s=0,mlen=0;
         for(int i=0;i<n;i++){
             s+=A[i];
             if(s==0){
-                mlen=max(i-len+1,mlen);
-                len=0;
+                mlen=max(i+1,mlen);
             }    
             else if(mp.find(s)!=mp.end()){
                 mlen=max(i-mp.find(s)->second,mlen);
