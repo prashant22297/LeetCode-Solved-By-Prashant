@@ -15,11 +15,9 @@ public:
 	            count=i;
 	            break;
 	        }
-	       // else break;
 	    }
 	    return count;
 	}
-
 };
 
 //{ Driver Code Starts.
