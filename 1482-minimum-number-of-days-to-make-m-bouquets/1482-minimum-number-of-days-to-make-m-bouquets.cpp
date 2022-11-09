@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool isPossible(vector<int>& v, int m ,int k, int mid){
-        if(m==0) return true;
         int count=0;
         for(int i=0;i<v.size();i++){
             if(v[i]-mid<=0){
@@ -12,7 +11,7 @@ public:
                 }
             }
             else count=0;
-            if(m<=0) return true;
+            if(m==0) return true;
         }
         return false;
     }
