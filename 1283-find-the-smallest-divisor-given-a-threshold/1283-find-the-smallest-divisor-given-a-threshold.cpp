@@ -9,7 +9,9 @@ public:
         else return false;
     }
     int smallestDivisor(vector<int>& nums, int threshold) {
-        int start =1 , end=1000000,mid,ans=-1;
+        int max_ele=INT_MIN;
+        for(int i: nums) if(i>max_ele) max_ele=i;
+        int start=1 , end=max_ele,mid,ans=-1;
         while(start<=end){
             mid=start+(end-start)/2;
             if(isPossible(nums,threshold,mid)){
