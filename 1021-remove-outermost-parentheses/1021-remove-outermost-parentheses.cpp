@@ -4,14 +4,8 @@ public:
         int open=0;
         string ans="";
         for(char ch : s){
-            if(ch=='(' && open++>0){
-                // open++;
-                ans=ans+ch;
-            }
-            else if(ch==')' && open-->1){
-                // open--;
-                ans=ans+ch;
-            }
+            if(ch=='(' && open++>0) ans=ans+ch;
+            else if(ch==')' && open-->1) ans=ans+ch;
         }
         return ans;
     }
