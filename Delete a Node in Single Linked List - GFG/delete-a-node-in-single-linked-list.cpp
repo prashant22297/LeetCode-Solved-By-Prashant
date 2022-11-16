@@ -91,12 +91,11 @@ Node* deleteNode(Node *head,int x)
         return head;
     }
     Node *temp=head;
-    for(int i=1;i<x-1;i++){
+    Node *prev;
+    for(int i=1;i<x;i++){
+        prev=temp;
         temp=temp->next;
     }
-    Node *prev=temp;
-    temp=temp->next;
-    Node *tempp = temp;
     prev->next=temp->next;
     delete(temp);
     
