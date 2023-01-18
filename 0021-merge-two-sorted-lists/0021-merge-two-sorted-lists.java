@@ -23,8 +23,7 @@ class Solution {
                 }
             ans=ans.next;
         }
-        if(list1!=null) ans.next=list1;
-        else if(list2!=null) ans.next=list2;
+        ans.next=list1!=null?list1:list2;
         return temp.next;
     }
 }
