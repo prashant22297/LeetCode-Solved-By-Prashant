@@ -1,15 +1,11 @@
 class Solution {
-    public int minOperations(int[] nums) {
+    public int minOperations(int[] num) {
         int count = 0,div=0,temp=0;
-        // for(int i : nums){
-        //     if(i>0) count++;
-        // }
-        for(int i=0;i<nums.length;i++){
+        for(int i=0;i<num.length;i++){
             temp=0;
-            int n=nums[i];
-            while(n>0){
-                if(n%2==0){
-                    n/=2;
+            while(num[i]>0){
+                if(num[i]%2==0){
+                    num[i]/=2;
                     temp++;
                     if(temp>div){
                         count++;
@@ -17,18 +13,11 @@ class Solution {
                     }
                 }
                 else{
-                    n--;
+                    num[i]--;
                     count++;
                 }
-                
             }
-          
         }
-        // int t =0;
-        // while(div>0){
-        //     t++;
-        //     div/=2;
-        // }
         return count;
     }
 }
