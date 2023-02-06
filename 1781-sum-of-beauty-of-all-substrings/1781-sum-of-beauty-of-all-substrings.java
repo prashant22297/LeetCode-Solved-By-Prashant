@@ -13,7 +13,6 @@ class Solution {
     public int Max(int[] fre){
         int max=0;
         for(int i: fre){
-            if(i!=0)
             max=Math.max(max,i);
         }
         return max;
