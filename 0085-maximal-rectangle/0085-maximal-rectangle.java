@@ -34,7 +34,7 @@ class Solution {
             }
             right[i]=idx;
         }
-        System.out.println(Arrays.toString(left));
+        // System.out.println(Arrays.toString(left));
         // System.out.println(Arrays.toString(right));
         int max_area=0;
         for(int i=0;i<m;i++){
