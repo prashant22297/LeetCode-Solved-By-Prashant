@@ -1,7 +1,6 @@
 class Solution {
     public int maximumUnits(int[][] boxTypes, int capacity) {
         Arrays.sort(boxTypes,(a,b)->b[1]-a[1]);
-        // System.out.print(Arrays.deepToString(boxTypes));
         int ans=0;
         for(int i=0;i<boxTypes.length;i++){
             if(capacity!=0){
@@ -9,6 +8,7 @@ class Solution {
                 ans+=boxTypes[i][1]*req;
                 capacity-=req;
             }
+            else break;
         }
         return ans;
     }
