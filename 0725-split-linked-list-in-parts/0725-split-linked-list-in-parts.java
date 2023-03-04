@@ -22,17 +22,15 @@ class Solution {
         int index = 0;
         temp = head;
         
-        while(temp!=null){
-            ListNode prev=temp;
+        while(temp!=null && index<k){
+            ans[index++]=temp;
             int diff = extra>0?1:0;
-            for(int i=0;i<each+diff-1;i++){
+            ListNode prev=null;
+            for(int i=0;i<each+diff;i++){
+                prev = temp;
                 temp=temp.next;
             }
-            ListNode l1 = temp.next;
-            temp.next=null;
-            temp=l1;
-            
-            ans[index++]=prev;
+            prev.next=null;
             extra--;            
         }
         return ans;
