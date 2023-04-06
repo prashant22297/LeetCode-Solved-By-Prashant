@@ -1,19 +1,19 @@
 class Solution {
-    public int minOperations(int[] num) {
-        int count = 0,div=0,temp=0;
-        for(int i=0;i<num.length;i++){
-            temp=0;
-            while(num[i]>0){
-                if(num[i]%2==0){
-                    num[i]/=2;
-                    temp++;
-                    if(temp>div){
+    public int minOperations(int[] nums) {
+        int mul=0,count=0;
+        for(int i=0;i<nums.length;i++){
+            int temp_count=0;
+            while(nums[i]>0){
+                if(nums[i]%2==0){
+                    nums[i]/=2;
+                    temp_count++;
+                    if(temp_count>mul){
                         count++;
-                        div=temp;
+                        mul=temp_count;
                     }
                 }
-                else{
-                    num[i]--;
+                else {
+                    nums[i]--;
                     count++;
                 }
             }
