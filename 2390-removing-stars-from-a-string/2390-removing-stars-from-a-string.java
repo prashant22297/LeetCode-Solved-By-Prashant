@@ -8,9 +8,10 @@ class Solution {
             }
             else st.push(s.charAt(i));
         }
-        while(!st.isEmpty()){
-            ans=st.pop()+ans;
+        StringBuilder sb = new StringBuilder();
+        for (char c : st) {
+            sb.append(c);
         }
-        return ans;
+        return sb.toString();
     }
 }
