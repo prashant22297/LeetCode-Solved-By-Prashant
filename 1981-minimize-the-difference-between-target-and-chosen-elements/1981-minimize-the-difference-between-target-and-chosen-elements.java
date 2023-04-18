@@ -11,14 +11,8 @@ class Solution {
         if(dp[row][sum]!=null) return dp[row][sum];
         
         int diff = Integer.MAX_VALUE;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++)
             diff=Math.min(diff,solve(mat,row+1,sum+mat[row][i],target,m,n,dp));
-            // if(!(sum+mat[row][i]-target>dp[row][sum])){
-            // dp[row+1][sum+mat[row][i]]=solve(mat,row+1,sum+mat[row][i],target,m,n,dp);
-            // diff=Math.min(diff,dp[row+1][sum+mat[row][i]]);
-            // dp[row][sum]=diff;
-            // }
-        }
         
         return dp[row][sum]=diff;
     }
