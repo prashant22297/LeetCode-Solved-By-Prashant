@@ -1,41 +1,41 @@
 class Solution {
-
-    private int gcd(int a, int b) {
-        if (b == 0) return a;
-        return gcd(b, a%b);
-    }
-
-    private int solve(int[] nums, ArrayList<Boolean> visited, int operation, Map<ArrayList<Boolean>, Integer> memo) {
-
-        if (memo.containsKey(visited)) return memo.get(visited);
-        int maxScore = 0;
-        
-        for (int i = 0; i<=nums.length-2; i++) {
-            if (visited.get(i)) continue;
-            for (int j = i+1; j < nums.length; j++) {
-               if (visited.get(j)) continue;
-               visited.set(i, true);
-               visited.set(j, true);
-            
-               int score = operation * gcd(nums[i], nums[j]);
-               int rScore = solve(nums, visited, operation+1, memo);
-
-              visited.set(i, false);
-              visited.set(j, false);
-               
-               maxScore = Math.max(maxScore, (score + rScore));
+    public int maxScore(int[] nums) {
+        int n = nums.length;
+        ArrayList<Boolean> visited = new ArrayList<>(nums.length);
+        for(int i=0;i<n;i++)
+            visited.add(false);
+        Map<ArrayList<Boolean>, Integer> dp = new HashMap<>();
+        int[][] g = new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j =0; j<n;j++){
+                g[i][j]=gcd(nums[i],nums[j]);
             }
         }
-
-        memo.put(new ArrayList<>(visited), maxScore);
-        return maxScore;
+        return solve(nums,1,n,g,visited,dp);
     }
-
-    public int maxScore(int[] nums) {
-        ArrayList<Boolean> visited = new ArrayList<>(nums.length);
-        for (int i = 0; i < nums.length; i++) visited.add(false);
-        Map<ArrayList<Boolean>, Integer> memo = new HashMap<>();
-
-        return solve(nums, visited, 1, memo);
+    public int solve(int[] nums, int op,int n, int[][] g,ArrayList<Boolean> visited,Map<ArrayList<Boolean>, Integer> dp){
+        // if(op == n) return 0;
+        if(dp.containsKey(visited)) return dp.get(visited);
+        int res=0;
+        for(int i=0;i<n;i++){
+            if(visited.get(i)==false){
+                for(int j =i+1; j<n;j++){
+                    if(visited.get(j)==false){
+                        visited.set(i,true);
+                        visited.set(j,true);
+                    
+                        res=Math.max(res, (op)*g[i][j]+solve(nums,op+1,n,g,visited,dp));
+                        visited.set(i,false);
+                        visited.set(j,false);
+                    }
+                }
+            }
+        }
+        dp.put(new ArrayList<>(visited),res);
+        return res;
+    }
+    public int gcd(int a, int b){
+        if(b==0) return a;
+        return gcd(b,a%b);
     }
 }
