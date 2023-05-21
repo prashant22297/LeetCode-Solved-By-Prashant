@@ -3,7 +3,7 @@ public class Solution {
         int left=0,right = nums.length-1,sum = 0;
         for (int i: nums)
             sum = sum+i;
-        int p1 = solve(nums, 0, nums.length - 1);
+        int p1 = solve(nums, left, right);
         int p2 = sum-p1;
         // System.out.println(p1+" "+p2);
         if (p1 >= p2) return true;
