@@ -119,14 +119,13 @@ class Node
 
 class Tree
 {   
-    int ans=0;
     int countLeaves(Node node) 
     {
         if(node==null) return 0;
-        if(node.left==null && node.right==null) ans++;
+        if(node.left==null && node.right==null) return 1;
         int a = countLeaves(node.left);
         int b = countLeaves(node.right);
-        return ans;
+        return a+b;
         
     }
 }
