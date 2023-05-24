@@ -14,19 +14,18 @@
  * }
  */
 class Solution {
-    int ans= Integer.MAX_VALUE;
     public int minDepth(TreeNode root) {
-        ans=Integer.MAX_VALUE;
-        if(root == null ) return 0;
-        solve(root,0);
-        return ans;
-    }
-    private void solve(TreeNode root, int cur){
-        if(root==null) return;
-        if(root.left==null && root.right==null){
-            ans=Math.min(ans,cur+1);
+        if(root==null) return 0;
+        if(root.left==null && root.right==null) return 1;
+        int left=minDepth(root.left);
+        int right=minDepth(root.right);
+        if(root.left==null){
+            return 1+right;
         }
-        solve(root.left,cur+1);
-        solve(root.right,cur+1);
+        if(root.right==null){
+            return 1+ left;
+        }
+        
+        return 1+Math.min(left,right);
     }
 }
