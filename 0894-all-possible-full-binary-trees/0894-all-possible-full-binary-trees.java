@@ -14,29 +14,24 @@
  * }
  */
 class Solution {
-    
     public List<TreeNode> allPossibleFBT(int n) {
         List<TreeNode> ans = new ArrayList<>();
-        // if(n<=0) return null;
-        // List<TreeNode> t = new ArrayList<>();
-        if(n==1) {
-            List<TreeNode> t = new ArrayList<>();
-            t.add(new TreeNode(0));
-            return t;
+        if(n%2==0) return ans;
+        if(n==1){
+            ans.add(new TreeNode(0));
+            return ans;
         }
         for(int i=1;i<n;i+=2){
-            List<TreeNode> left =allPossibleFBT(i);
-            List<TreeNode> right =allPossibleFBT(n-i-1);
-            // if(left!=null && right!=null){
-                for(TreeNode l: left){
-                    for(TreeNode r: right){
-                        TreeNode temp = new TreeNode(0);
-                        temp.left=l;
-                        temp.right=r;
-                        ans.add(temp);
-                    }
+            List<TreeNode> left = allPossibleFBT(i);
+            List<TreeNode> right = allPossibleFBT(n-i-1);
+            for(TreeNode l : left){
+                for(TreeNode r: right){
+                    TreeNode root = new TreeNode(0);
+                    root.left=l;
+                    root.right=r;
+                    ans.add(root);
                 }
-            // }
+            }
         }
         return ans;
     }
