@@ -112,18 +112,13 @@ class GfG
             hm.put(i++,head.data);
             head=head.next;
         }
-        // System.out.println(i);
-        // return node;
         return solve(hm, node,i,0);
     }
     private static Tree solve(HashMap<Integer, Integer> hm , Tree root, int size, int curr){
         if(curr>=size) return null;
-        // System.out.println(curr);
         root = new Tree(hm.get(curr));
-        if(hm.containsKey((2*curr)+1))
-            root.left = solve(hm , root,size,(2*curr)+1);
-        if(hm.containsKey((2*curr)+2))
-            root.right = solve(hm, root,size,(2*curr)+2);
+        root.left = solve(hm , root,size,(2*curr)+1);
+        root.right = solve(hm, root,size,(2*curr)+2);
         return root;
     }
 }  
