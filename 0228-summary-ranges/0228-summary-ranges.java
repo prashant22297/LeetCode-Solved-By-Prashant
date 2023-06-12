@@ -11,23 +11,16 @@ class Solution {
                     e=nums[i];
                 }
                 else {
-                    String t="";
                     if(s!=e)
-                        t = Integer.toString(s)+"->"+Integer.toString(e);
+                        ans.add(Integer.toString(s)+"->"+Integer.toString(e));
                     else
-                        t = Integer.toString(s);
-                    ans.add(t);
-
+                        ans.add(Integer.toString(s));
                     s=nums[i];
                     e=nums[i];
                 }
             }
-            String t="";
-            if(s!=e)
-                t = Integer.toString(s)+"->"+Integer.toString(e);
-            else
-                t = Integer.toString(s);
-            ans.add(t);
+            if(s!=e) ans.add(Integer.toString(s)+"->"+Integer.toString(e));
+            else ans.add(Integer.toString(s));
         }
         return ans;
     }
