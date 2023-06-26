@@ -1,53 +1,31 @@
 class Solution {
     public long totalCost(int[] costs, int k, int candidates) {
-        long sum=0;
+        int hire =0;
+        long ans=0;
         PriorityQueue<Integer> left = new PriorityQueue<>();
         PriorityQueue<Integer> right = new PriorityQueue<>();
         int i=0,j=costs.length-1;
-        for(;i<candidates;i++){
-            left.add(costs[i]);
-        }
-        for(;j>Math.max(costs.length-candidates-1,candidates-1);j--){
-            right.add(costs[j]);
-        }
-        // System.out.println(left.toString());
-        // System.out.println(right.toString());
-        while(k-->0){
-            
-            if(left.size()!=0 && right.size()!=0){
-                int l = left.peek(), r=right.peek();
-            if(l<=r){
-                left.poll();
-                sum+=l;
-                if(i<=j){
-                    left.add(costs[i]);
-                    i++;
-                }
-                // if(j<=i && l==r){
-                //     right.poll();
-                // }
+        while(hire != k){
+            while(left.size()<candidates && i<=j){
+                left.add(costs[i]);
+                i++;
             }
-            else{
-                sum+=r;
-                right.poll();
-                if(i<=j){
-                    right.add(costs[j]);
-                    j--;
-                }
-                // if(j<=i){
-                //     left.poll();
-                // }
+            while(right.size()<candidates && j>=i){
+                right.add(costs[j]);
+                j--;
             }
-            }
-            else if(left.size()!=0){
-                sum+=left.peek();
+            int a = left.size()==0?Integer.MAX_VALUE:left.peek();
+            int b = right.size()==0?Integer.MAX_VALUE:right.peek();
+            if(a<=b){
+                ans+=a;
                 left.poll();
             }
             else {
-                sum+=right.peek();
+                ans+=b;
                 right.poll();
             }
+            hire++;
         }
-        return sum;
+        return ans;
     }
 }
