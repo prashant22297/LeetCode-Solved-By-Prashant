@@ -10,22 +10,37 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        // if(lists.length ==0) return new ListNode();
+        // PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // for(ListNode node : lists){
+        //     while(node!=null){
+        //         pq.offer(node.val);
+        //         node=node.next;
+        //     }
+        // }
+        // ListNode ans = new ListNode(-1);
+        // ListNode head = ans;
+        // while(!pq.isEmpty()){
+        //     head.next = new ListNode(pq.poll());
+        //     head=head.next;
+        // }
+        // return ans.next;
         
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        
-        for(ListNode node : lists){
-            while(node!=null){
-                pq.offer(node.val);
-                node=node.next;
-            }
+        ListNode ans = null;
+        for(ListNode l : lists){
+            ans = solve(ans, l);
         }
-        ListNode ans = new ListNode(-1);
-        ListNode head = ans;
-        while(!pq.isEmpty()){
-            head.next = new ListNode(pq.poll());
-            head=head.next;
+        return ans;
+    }
+    public ListNode solve(ListNode l1, ListNode l2){
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        if(l1.val<l2.val){
+            l1.next = solve(l1.next,l2);
+            return l1;
         }
-        return ans.next;
+        else {
+            l2.next = solve(l1,l2.next);
+            return l2;
+        }
     }
 }
