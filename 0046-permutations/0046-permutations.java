@@ -1,21 +1,21 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        // List<Integer> vis = new ArrayList<>();
         List<List<Integer>> ans = new ArrayList<>();
         boolean[] vis = new boolean[nums.length];
-        solve(0,nums.length,ans,new ArrayList<>(),nums,vis);
+        solve(nums,ans,new ArrayList<>(),vis);
         return ans;
     }
-    public void solve(int idx, int n, List<List<Integer>> ans, List<Integer> pro,int[] nums, boolean[] vis){
-        if(idx == n){
-            ans.add(new ArrayList<>(pro));
+    void solve(int[] nums, List<List<Integer>> ans, List<Integer> curr, boolean[] vis){
+        if(curr.size()==nums.length){
+            ans.add(new ArrayList(curr));
+            return;
         }
-        for(int i=0;i<n;i++){
-            if(!vis[i]){
+        for(int i=0;i<nums.length;i++){
+            if(vis[i]==false){
+                curr.add(nums[i]);
                 vis[i]=true;
-                pro.add(nums[i]);
-                solve(idx+1,n,ans,pro,nums,vis);
-                pro.remove(pro.size()-1);
+                solve(nums,ans,curr,vis);
+                curr.remove(curr.size()-1);
                 vis[i]=false;
             }
         }
