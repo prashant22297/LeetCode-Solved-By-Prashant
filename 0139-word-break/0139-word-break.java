@@ -26,8 +26,8 @@ class Solution {
     public boolean solve(int idx, String s, List<String> wordDict){
         if(idx==s.length()) return true;
         if(dp[idx]!=null) return dp[idx];
-        for(int i=idx+1;i<=s.length();i++){
-            if(wordDict.contains(s.substring(idx,i)) && solve(i,s,wordDict)) return dp[idx]=true;
+        for(int i=idx;i<s.length();i++){
+            if(wordDict.contains(s.substring(idx,i+1)) && solve(i+1,s,wordDict)) return dp[idx]=true;
         }
         return dp[idx]=false;
     }
