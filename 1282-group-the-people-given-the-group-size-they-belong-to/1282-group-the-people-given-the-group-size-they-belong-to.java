@@ -4,18 +4,10 @@ class Solution {
         Map<Integer,List<Integer>> mp = new HashMap<>();
 
         for(int i=0;i<groupSizes.length;i++){
-            List<Integer> temp;
-            if(mp.containsKey(groupSizes[i])){
-                temp=mp.get(groupSizes[i]);
-                temp.add(i);
-            }
-            else{
-                temp = new ArrayList<>();
-                temp.add(i);
-                mp.put(groupSizes[i],temp);
-            }
+            List<Integer> temp=mp.computeIfAbsent(groupSizes[i],k->new ArrayList<>());
+            temp.add(i);
             if(temp.size()==groupSizes[i]){
-                result.add(new ArrayList(temp));
+                result.add(temp);
                 mp.remove(groupSizes[i]);
             }
         }
