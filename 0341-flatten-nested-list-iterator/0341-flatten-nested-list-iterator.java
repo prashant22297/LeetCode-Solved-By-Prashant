@@ -16,43 +16,72 @@
  * }
  */
 public class NestedIterator implements Iterator<Integer> {
-    Stack<NestedInteger> st= new Stack<>();
+        // Method 1 
+//     Stack<NestedInteger> st= new Stack<>();
+//     public NestedIterator(List<NestedInteger> nestedList) {
+//         for(int i=nestedList.size()-1;i>=0;i--){
+//             st.push(nestedList.get(i));
+//         }
+//     }
+    
+//     @Override
+//     public Integer next() {
+//         Integer ab ;
+//         if(st.peek().isInteger()){
+//             return st.pop().getInteger();
+//         }
+//         else{
+//             List<NestedInteger> nums = st.pop().getList();
+//             for(int i = nums.size()-1;i>=0;i--){
+//                 st.push(nums.get(i));
+//             }
+//             return st.pop().getInteger();
+//         }
+//     }
+
+//     @Override
+//     public boolean hasNext() {
+//         if(st.isEmpty()){
+//             return false;
+//         }
+//         else{
+//             while(!st.isEmpty() && !st.peek().isInteger()){
+//                 List<NestedInteger> nums = st.pop().getList();
+//                 for(int i = nums.size()-1;i>=0;i--){
+//                     st.push(nums.get(i));
+//                 }
+//             }
+//             if(st.isEmpty()) return false;
+//             else return true;
+//         }
+//     }
+    
+    // Method 2:
+    
+    Queue<Integer> q = new LinkedList<>();
+
     public NestedIterator(List<NestedInteger> nestedList) {
-        for(int i=nestedList.size()-1;i>=0;i--){
-            st.push(nestedList.get(i));
+        flatten(nestedList);
+    }
+    public void flatten(List<NestedInteger> nestedList){
+        int len = nestedList.size();
+        for(int i=0;i<len;i++){
+            if(nestedList.get(i).isInteger()){
+                q.add(nestedList.get(i).getInteger());
+            }
+            else{
+                flatten(nestedList.get(i).getList());
+            }
         }
     }
-    
     @Override
     public Integer next() {
-        Integer ab ;
-        if(st.peek().isInteger()){
-            return st.pop().getInteger();
-        }
-        else{
-            List<NestedInteger> nums = st.pop().getList();
-            for(int i = nums.size()-1;i>=0;i--){
-                st.push(nums.get(i));
-            }
-            return st.pop().getInteger();
-        }
+        return q.remove();
     }
 
     @Override
     public boolean hasNext() {
-        if(st.isEmpty()){
-            return false;
-        }
-        else{
-            while(!st.isEmpty() && !st.peek().isInteger()){
-                List<NestedInteger> nums = st.pop().getList();
-                for(int i = nums.size()-1;i>=0;i--){
-                    st.push(nums.get(i));
-                }
-            }
-            if(st.isEmpty()) return false;
-            else return true;
-        }
+        return !q.isEmpty();
     }
 }
 
