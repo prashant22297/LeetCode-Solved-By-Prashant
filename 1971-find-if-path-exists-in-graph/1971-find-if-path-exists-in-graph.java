@@ -1,27 +1,31 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i=0;i<n;i++) adj.add(new ArrayList<>());
-        for(int i=0;i<edges.length;i++){
-            adj.get(edges[i][0]).add(edges[i][1]);
-            adj.get(edges[i][1]).add(edges[i][0]);
+        Map<Integer, ArrayList<Integer>> adj = new HashMap<>();
+        for(int[] edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            adj.computeIfAbsent(u, k -> new ArrayList<>()).add(v);
+            adj.computeIfAbsent(v, k -> new ArrayList<>()).add(u);
         }
-        boolean[] visited = new boolean[n];
-        Queue<Integer> q = new LinkedList<>();
-        q.add(source);
-        visited[source]=true;
-        while(!q.isEmpty()){
-            int u = q.poll();
-            visited[u]=true;
-            if(u==destination) return true;
-            for(int v : adj.get(u)){
-                if(visited[v]==false){
-                    q.add(v);
-                    visited[v]=true;
-                }
+        
+        // for(int i=0;i<n;i++){
+        //     System.out.println(adj.get(i));
+        // }
+        
+        Set<Integer> visited = new HashSet<>();
+        return solve(source, destination, adj, visited);
+    }
+    
+    private boolean solve(int s, int d, Map<Integer,ArrayList<Integer>> adj , Set<Integer> visited ){
+        if(s==d) return true;
+        
+        visited.add(s);
+        for(int i : adj.get(s)){
+            if(!visited.contains(i)){
+                if(solve(i,d,adj,visited)) return true;
             }
         }
-        return visited[destination];
-        
+        return false;
     }
+
 }
