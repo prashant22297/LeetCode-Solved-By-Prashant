@@ -14,15 +14,17 @@
  * }
  */
 class Solution {
-    int ans=0;
+    int ans;
     public int distributeCoins(TreeNode root) {
-        solve(root);
+        ans=0;
+        dfs(root);
         return ans;
     }
-    private int solve(TreeNode root){
+    public int dfs(TreeNode root){
         if(root==null) return 0;
-        int temp = solve(root.left)+solve(root.right)+root.val-1;
-        ans+=Math.abs(temp);
-        return temp;
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        ans=ans+Math.abs(left)+Math.abs(right);
+        return root.val+left+right-1;
     }
 }
