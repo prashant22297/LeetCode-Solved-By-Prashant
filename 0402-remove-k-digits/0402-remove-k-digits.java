@@ -1,36 +1,28 @@
 class Solution {
     public String removeKdigits(String num, int k) {
-        if (num.length() == k)
-            return "0";
-        Stack<Character> s = new Stack<>();
-        int i = 0;
-        for (char ch : num.toCharArray()) {
-            if (k == 0 || s.isEmpty())
-                s.push(ch);
-            else if (s.peek() < ch) {
-                s.push(ch);
-                continue;
-            } else {
-                while (!s.isEmpty() && s.peek() > ch && k != 0) {
-                    s.pop();
-                    k--;
-                }
-                s.push(ch);
+        Stack<Character> st = new Stack<>();
+        if(k==num.length()) return "0";
+        for(int i=0;i<num.length();i++){
+            while(k>0 && !st.isEmpty() && st.peek()>num.charAt(i)){
+                st.pop();
+                k--;
             }
+            st.push(num.charAt(i));
         }
-        while (k != 0) {
-            s.pop();
-            k--;
+        while(k>0){
+            st.pop();
+            k--;            
         }
-        StringBuilder sh = new StringBuilder();
-        while (!s.isEmpty()) {
-            sh.append(s.pop());
+        StringBuilder sb = new StringBuilder();
+        
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+            
         }
-
-        sh = sh.reverse();
-
-        while (sh.length() > 0 && sh.charAt(0) == '0')
-            sh.deleteCharAt(0);
-        return sh.length() > 0 ? sh.toString() : "0";
+        sb.reverse();
+        while(sb.charAt(0)=='0' && sb.length()>1){
+            sb.deleteCharAt(0);
+        }
+        return sb.toString();
     }
 }
