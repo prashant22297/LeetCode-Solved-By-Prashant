@@ -1,39 +1,59 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // Two Pointer
+        int i = 0, j = 0;
         int m = nums1.length, n = nums2.length;
-        int size = m+n;
-        int idx1 = (size/2)-1,val1=10000000;
-        int idx2 = (size/2),val2=10000000;
-        int i = 0 , j = 0;
-        int index=0;
-        while(i<m && j<n){
-            if(nums1[i]<nums2[j]){
-                if(index==idx1) val1=nums1[i];
-                if(index==idx2) val2=nums1[i];
+        int totalLength = m + n;
+        // if(totalLength%2==0){
+        int requiredIndex = (totalLength / 2) - 1, requiredIndex2 = (totalLength / 2);
+        System.out.println(requiredIndex + " " + requiredIndex2);
+        int requiredValue = -1, requiredValue2 = -1;
+        int index = 0;
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                if (requiredIndex == index) {
+                    requiredValue = nums1[i];
+                }
+                if (requiredIndex2 == index) {
+                    requiredValue2 = nums1[i];
+                }
                 i++;
-            }
-            else {
-                if(index==idx1) val1=nums2[j];
-                if(index==idx2) val2=nums2[j];
+            } else {
+                if (requiredIndex == index) {
+                    requiredValue = nums2[j];
+                }
+                if (requiredIndex2 == index) {
+                    requiredValue2 = nums2[j];
+                }
                 j++;
             }
             index++;
         }
-        while(i<m){
-            if(index==idx1) val1=nums1[i];
-            if(index==idx2) val2=nums1[i];
-            index++;
+        while (i < m) {
+            if (requiredIndex == index) {
+                requiredValue = nums1[i];
+            }
+            if (requiredIndex2 == index) {
+                requiredValue2 = nums1[i];
+            }
             i++;
-        }
-        while(j<n){
-            if(index==idx1) val1=nums2[j];
-            if(index==idx2) val2=nums2[j];
             index++;
-            j++;  
         }
-        System.out.println(val1+" "+idx1+" "+val2+" "+idx2);
-        if(size%2==1) return val2;
-        else return (val2+val1)/2.0;
-        
+        while (j < n) {
+            if (requiredIndex == index) {
+                requiredValue = nums2[j];
+            }
+            if (requiredIndex2 == index) {
+                requiredValue2 = nums2[j];
+            }
+            j++;
+            index++;
+
+        }
+        if (totalLength % 2 == 0)
+            return (requiredValue + requiredValue2) / 2.0;
+        else
+            return requiredValue2;
+
     }
 }
