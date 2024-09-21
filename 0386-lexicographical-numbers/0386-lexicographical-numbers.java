@@ -1,14 +1,17 @@
 class Solution {
     public List<Integer> lexicalOrder(int n) {
-        String[] st = new String[n];
-        for(int i=0;i<n;i++){
-            st[i]=""+(i+1);
+        List<Integer> ans = new ArrayList<>();
+        for(int j=1;j<=9;j++){
+            solve(j,n,ans);
         }
-        Arrays.sort(st);
-        List<Integer> result = new ArrayList<>();
-        for (String s : st) {
-            result.add(Integer.parseInt(s));
+        return ans;
+    }
+    
+    public void solve(int i , int n , List<Integer> ans){
+        if(i>n) return;
+        ans.add(i);
+        for(int j=0;j<=9;j++){
+            solve(i*10+j,n,ans);
         }
-        return result;
     }
 }
