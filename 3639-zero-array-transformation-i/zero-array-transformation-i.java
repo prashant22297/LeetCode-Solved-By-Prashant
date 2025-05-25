@@ -5,15 +5,15 @@ class Solution {
         for (int i = 0; i < queries.length; i++) {
             int l = queries[i][0];
             int r = queries[i][1];
-            diff[l] += 1;
+            diff[l] -= 1;
             if (r + 1 < lengthNums) {
-                diff[r + 1] -= 1;
+                diff[r + 1] += 1;
             }
         }
         int sum = 0;
         for (int i = 0; i < lengthNums; i++) {
             sum += diff[i];
-            if (nums[i] > sum) {
+            if (nums[i]+sum>0) {
                 return false;
             }
         }
