@@ -1,25 +1,36 @@
-import java.util.*;
-
 class Solution {
     public List<String> getLongestSubsequence(String[] words, int[] groups) {
-        List<String> dp0 = new ArrayList<>();
-        List<String> dp1 = new ArrayList<>();
-        for (int i = 0; i < words.length; i++) {
-            if (groups[i] == 0) {
-                List<String> newDp0 = new ArrayList<>(dp1);
-                newDp0.add(words[i]);
-                if (newDp0.size() > dp0.size()) {
-                    dp0 = newDp0;
+        int n = words.length;
+        List<String> startsWithZero = new ArrayList<>();
+        List<String> startsWithOne = new ArrayList<>();
+        boolean zero = true;
+        boolean one = true;
+        for (int i = 0; i < n; i++) {
+            if (zero) {
+                if (groups[i] == 0) {
+                    startsWithZero.add(words[i]);
+                    zero = false;
                 }
             } else {
-                List<String> newDp1 = new ArrayList<>(dp0);
-                newDp1.add(words[i]);
-                if (newDp1.size() > dp1.size()) {
-                    dp1 = newDp1;
+                if (groups[i] == 1) {
+                    startsWithZero.add(words[i]);
+                    zero = true;
                 }
+
+            }
+            if (one) {
+                if (groups[i] == 1) {
+                    startsWithOne.add(words[i]);
+                    one = false;
+                }
+            } else {
+                if (groups[i] == 0) {
+                    startsWithOne.add(words[i]);
+                    one = true;
+                }
+
             }
         }
-
-        return dp0.size() > dp1.size() ? dp0 : dp1;
+        return startsWithZero.size() > startsWithOne.size() ? startsWithZero : startsWithOne;
     }
 }
