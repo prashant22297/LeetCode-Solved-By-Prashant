@@ -48,7 +48,7 @@ class Solution {
         for (int i = 0; i < extra1.size(); i++) {
             int x = extra1.get(i);
             int y = extra2.get(i);
-            res += Math.min(2L * minCost, Math.min(x, y));
+            res += Math.min(2L * minCost, Math.min(x, y)); // the important part.
         }
 
         return res;
