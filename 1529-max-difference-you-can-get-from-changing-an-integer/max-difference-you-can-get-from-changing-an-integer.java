@@ -4,12 +4,6 @@ class Solution {
     public int maxDiff(int num) {
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
-        int countDigit = 0;
-        int n = num;
-        while (n > 0) {
-            countDigit++;
-            n /= 10;
-        }
         for (int i = 0; i <= 9; i++) {
             for (int j = 0; j <= 9; j++) {
                 int number = replace(num, i, j);
