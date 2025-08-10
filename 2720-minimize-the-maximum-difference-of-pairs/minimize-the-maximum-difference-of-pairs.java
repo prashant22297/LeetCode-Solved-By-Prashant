@@ -1,31 +1,26 @@
 class Solution {
     public int minimizeMax(int[] nums, int p) {
+        int n = nums.length;
         Arrays.sort(nums);
-
-        int left = 0;
-        int right = nums[nums.length - 1] - nums[0];
-
-        while (left < right) {
-            int midDiff = (left + right) / 2;
-            if (isFeasible(midDiff, nums, p)) {
-                right = midDiff;
+        int l = 0;
+        int r = nums[n - 1] - nums[0];
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (isFeasible(nums, mid, p, n)) {
+                r = mid;
             } else {
-                left = midDiff + 1;
+                l = mid + 1;
             }
         }
-
-        return left;
+        return l;
     }
 
-    private boolean isFeasible(int diff, int[] nums, int p) {
+    public boolean isFeasible(int[] nums, int mid, int p, int n) {
         int count = 0;
-        int i = 0;
-        while (i < nums.length - 1 && count < p) {
-            if (nums[i + 1] - nums[i] <= diff) {
-                count++;
-                i += 2;
-            } else {
+        for (int i = 0; i < n - 1; i++) {
+            if (Math.abs(nums[i] - nums[i + 1]) <= mid) {
                 i++;
+                count++;
             }
         }
         return count >= p;
