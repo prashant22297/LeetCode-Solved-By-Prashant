@@ -1,36 +1,46 @@
 class Solution {
+    boolean leadingZero;
+
     public int maxDiff(int num) {
-        String str1 = Integer.toString(num);
-        String str2 = str1;
-
-        // Create max number by replacing first non-9 digit with 9
-        int idx = -1;
-        for (int i = 0; i < str1.length(); i++) {
-            if (str1.charAt(i) != '9') {
-                idx = i;
-                break;
-            }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int countDigit = 0;
+        int n = num;
+        while (n > 0) {
+            countDigit++;
+            n /= 10;
         }
-
-        if (idx != -1) {
-            char ch = str1.charAt(idx);
-            str1 = str1.replace(ch, '9');
-        }
-
-        // Create min number with care to avoid leading zeros
-        for (int i = 0; i < str2.length(); i++) {
-            char ch = str2.charAt(i);
-            if (i == 0) {
-                if (ch != '1') {
-                    str2 = str2.replace(ch, '1');
-                    break;
+        for (int i = 0; i <= 9; i++) {
+            for (int j = 0; j <= 9; j++) {
+                int number = replace(num, i, j);
+                if (leadingZero) {
+                    leadingZero = false;
+                    continue;
                 }
-            } else if (ch != '0' && ch != str2.charAt(0)) {
-                str2 = str2.replace(ch, '0');
-                break;
+                max = Math.max(max, number);
+                min = Math.min(min, number);
             }
         }
+        return max - min;
+    }
 
-        return Integer.parseInt(str1) - Integer.parseInt(str2);
+    public int replace(int num, int x, int y) {
+        int n = 0;
+        int count = 1;
+        int temp = num;
+        int r = -1;
+        while (temp > 0) {
+            r = temp % 10;
+            if (r == x) {
+                r = y;
+            }
+            n += r * count;
+            count *= 10;
+            temp /= 10;
+        }
+        if (r == 0) {
+            leadingZero = true;
+        }
+        return n;
     }
 }
