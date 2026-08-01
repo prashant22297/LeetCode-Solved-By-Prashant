@@ -9,6 +9,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0078-subsets](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0078-subsets) |
 | [0303-range-sum-query-immutable](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0303-range-sum-query-immutable) |
 | [0307-range-sum-query-mutable](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0307-range-sum-query-mutable) |
+| [0486-predict-the-winner](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0486-predict-the-winner) |
 | [1993-sum-of-all-subset-xor-totals](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/1993-sum-of-all-subset-xor-totals) |
 | [3010-divide-an-array-into-subarrays-with-minimum-cost-i](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/3010-divide-an-array-into-subarrays-with-minimum-cost-i) |
 | [3648-find-the-maximum-number-of-fruits-collected](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/3648-find-the-maximum-number-of-fruits-collected) |
@@ -25,6 +26,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Math
 |  |
 | ------- |
+| [0486-predict-the-winner](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0486-predict-the-winner) |
 | [1993-sum-of-all-subset-xor-totals](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/1993-sum-of-all-subset-xor-totals) |
 ## Combinatorics
 |  |
@@ -55,6 +57,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 |  |
 | ------- |
+| [0486-predict-the-winner](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0486-predict-the-winner) |
 | [3648-find-the-maximum-number-of-fruits-collected](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/3648-find-the-maximum-number-of-fruits-collected) |
 ## Matrix
 |  |
@@ -64,4 +67,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [3010-divide-an-array-into-subarrays-with-minimum-cost-i](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/3010-divide-an-array-into-subarrays-with-minimum-cost-i) |
+## Recursion
+|  |
+| ------- |
+| [0486-predict-the-winner](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0486-predict-the-winner) |
+## Game Theory
+|  |
+| ------- |
+| [0486-predict-the-winner](https://github.com/prashant22297/LeetCode-Solved-By-Prashant/tree/master/0486-predict-the-winner) |
 <!---LeetCode Topics End-->
