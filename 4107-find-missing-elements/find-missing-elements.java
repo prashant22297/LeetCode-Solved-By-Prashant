@@ -6,7 +6,6 @@ class Solution {
             min = n < min ? n : min;
             max = n > max ? n : max;
         }
-        System.out.println(min + " " + max);
         List<Integer> missingNumber = new ArrayList<>();
         for (int i = min; i <= max; i++) {
             boolean numberFound = false;
